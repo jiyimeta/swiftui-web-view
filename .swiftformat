@@ -1,5 +1,6 @@
 --allman false
 --disable andOperator
+--disable extensionAccessControl
 --disable unusedArguments
 --lineaftermarks false
 --swiftversion 5.9
