@@ -26,14 +26,14 @@ extension WebView.Coordinator: WKNavigationDelegate {
     }
 
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        parent.navigationModifiers.onStartProvisionalNavigation?(navigation)
+        parent.navigationModifiers.didStartProvisionalNavigation?(navigation)
     }
 
     public func webView(
         _ webView: WKWebView,
         didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!
     ) {
-        parent.navigationModifiers.onReceiveServerRedirectForProvisionalNavigation?(navigation)
+        parent.navigationModifiers.didReceiveServerRedirectForProvisionalNavigation?(navigation)
     }
 
     public func webView(
@@ -41,19 +41,19 @@ extension WebView.Coordinator: WKNavigationDelegate {
         didFailProvisionalNavigation navigation: WKNavigation!,
         withError error: any Error
     ) {
-        parent.navigationModifiers.onFailProvisionalNavigation?(navigation, error)
+        parent.navigationModifiers.didFailProvisionalNavigation?(navigation, error)
     }
 
     public func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        parent.navigationModifiers.onCommit?(navigation)
+        parent.navigationModifiers.didCommit?(navigation)
     }
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        parent.navigationModifiers.onFinish?(navigation)
+        parent.navigationModifiers.didFinish?(navigation)
     }
 
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error) {
-        parent.navigationModifiers.onFail?(navigation, error)
+        parent.navigationModifiers.didFail?(navigation, error)
     }
 
     public func webView(

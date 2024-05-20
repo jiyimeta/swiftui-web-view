@@ -14,12 +14,12 @@ struct WebViewNavigationModifiers: Modifiable {
         ) async -> WKNavigationResponsePolicy
     )?
 
-    var onStartProvisionalNavigation: (@Sendable (_ navigation: WKNavigation) -> Void)?
-    var onReceiveServerRedirectForProvisionalNavigation: (@Sendable (_ navigation: WKNavigation) -> Void)?
-    var onFailProvisionalNavigation: (@Sendable (_ navigation: WKNavigation, _ error: any Error) -> Void)?
-    var onCommit: (@Sendable (_ navigation: WKNavigation) -> Void)?
-    var onFinish: (@Sendable (_ navigation: WKNavigation) -> Void)?
-    var onFail: (@Sendable (_ navigation: WKNavigation, _ error: any Error) -> Void)?
+    var didStartProvisionalNavigation: (@Sendable (_ navigation: WKNavigation) -> Void)?
+    var didReceiveServerRedirectForProvisionalNavigation: (@Sendable (_ navigation: WKNavigation) -> Void)?
+    var didFailProvisionalNavigation: (@Sendable (_ navigation: WKNavigation, _ error: any Error) -> Void)?
+    var didCommit: (@Sendable (_ navigation: WKNavigation) -> Void)?
+    var didFinish: (@Sendable (_ navigation: WKNavigation) -> Void)?
+    var didFail: (@Sendable (_ navigation: WKNavigation, _ error: any Error) -> Void)?
 
     var respondingToAuthenticationChallenge: (@Sendable (
         _ challenge: URLAuthenticationChallenge

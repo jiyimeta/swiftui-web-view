@@ -18,30 +18,36 @@ struct ContentView: View {
                             print("decidingPolicyForNavigationResponse", navigationResponse)
                             return .allow
                         }
-                        .onStartProvisionalNavigation { navigation in
-                            print("onStartProvisionalNavigation", navigation)
+                        .didStartProvisionalNavigation { navigation in
+                            print("didStartProvisionalNavigation", navigation)
                         }
-                        .onReceiveServerRedirectForProvisionalNavigation { navigation in
-                            print("onReceiveServerRedirectForProvisionalNavigation", navigation)
+                        .didReceiveServerRedirectForProvisionalNavigation { navigation in
+                            print("didReceiveServerRedirectForProvisionalNavigation", navigation)
                         }
-                        .onFailProvisionalNavigation { navigation, error in
-                            print("onFailProvisionalNavigation", navigation, error)
+                        .didFailProvisionalNavigation { navigation, error in
+                            print("didFailProvisionalNavigation", navigation, error)
                         }
-                        .onFail { navigation, error in
-                            print("onFail", navigation, error)
+                        .didCommitNavigation { navigation in
+                            print("didCommitNavigation", navigation)
+                        }
+                        .didFinishNavigation { navigation in
+                            print("didFinishNavigation", navigation)
+                        }
+                        .didFailNavigation { navigation, error in
+                            print("didFailNavigation", navigation, error)
                         }
                         .respondingToAuthenticationChallenge { challenge in
                             print("respondingToAuthenticationChallenge", challenge)
                             return .performDefaultHandling
                         }
-                        .onTerminateWebContentProcess {
-                            print("onTerminateWebContentProcess")
+                        .didTerminateWebContentProcess {
+                            print("didTerminateWebContentProcess")
                         }
-                        .onBecomeDownloadForNavigationAction { navigationAction, download in
-                            print("onBecomeDownloadForNavigationAction", navigationAction, download)
+                        .didBecomeDownloadForNavigationAction { navigationAction, download in
+                            print("didBecomeDownloadForNavigationAction", navigationAction, download)
                         }
-                        .onBecomeDownloadForNavigationResponse { navigationResponse, download in
-                            print("onBecomeDownloadForNavigationResponse", navigationResponse, download)
+                        .didBecomeDownloadForNavigationResponse { navigationResponse, download in
+                            print("didBecomeDownloadForNavigationResponse", navigationResponse, download)
                         }
                         .ignoresSafeArea(.container, edges: .bottom)
                 }

@@ -40,20 +40,20 @@ extension WebView {
     /// - Parameters:
     ///   - block: A closure to run when a navigation is detected.
     ///   - navigation: The navigation.
-    public func onStartProvisionalNavigation(
+    public func didStartProvisionalNavigation(
         _ block: @escaping @Sendable (_ navigation: WKNavigation) -> Void
     ) -> WebView {
-        registering(\.onStartProvisionalNavigation, block)
+        registering(\.didStartProvisionalNavigation, block)
     }
 
     /// Adds a modifier for this web view that fires an action when a server redirect is received for the main frame.
     /// - Parameters:
     ///   - webView: The web view invoking the delegate method.
     ///   - navigation: The navigation.
-    public func onReceiveServerRedirectForProvisionalNavigation(
+    public func didReceiveServerRedirectForProvisionalNavigation(
         _ block: @escaping @Sendable (_ navigation: WKNavigation) -> Void
     ) -> WebView {
-        registering(\.onReceiveServerRedirectForProvisionalNavigation, block)
+        registering(\.didReceiveServerRedirectForProvisionalNavigation, block)
     }
 
     /// Adds a modifier for this web view that fires an action when an error occurs while starting to load data for
@@ -62,30 +62,30 @@ extension WebView {
     ///   - block: A closure to run when a navigation is detected.
     ///   - navigation: The navigation.
     ///   - error: The error that occurred.
-    public func onFailProvisionalNavigation(
+    public func didFailProvisionalNavigation(
         _ block: @escaping @Sendable (_ navigation: WKNavigation, _ error: any Error) -> Void
     ) -> WebView {
-        registering(\.onFailProvisionalNavigation, block)
+        registering(\.didFailProvisionalNavigation, block)
     }
 
     /// Adds a modifier for this web view that fires an action when content starts arriving for the main frame.
     /// - Parameters:
     ///   - block: A closure to run when a navigation is detected.
     ///   - navigation: The navigation.
-    public func onCommit(
+    public func didCommitNavigation(
         _ block: @escaping @Sendable (_ navigation: WKNavigation) -> Void
     ) -> WebView {
-        registering(\.onCommit, block)
+        registering(\.didCommit, block)
     }
 
     /// Adds a modifier for this web view that fires an action when a main frame navigation completes.
     /// - Parameters:
     ///   - block: A closure to run when a navigation is detected.
     ///   - navigation: The navigation.
-    public func onFinish(
+    public func didFinishNavigation(
         _ block: @escaping @Sendable (_ navigation: WKNavigation) -> Void
     ) -> WebView {
-        registering(\.onFinish, block)
+        registering(\.didFinish, block)
     }
 
     /// Adds a modifier for this web view that fires an action when an error occurs during a committed main frame
@@ -94,10 +94,10 @@ extension WebView {
     ///   - block: A closure to run when a navigation is detected.
     ///   - navigation: The navigation.
     ///   - error: The error that occurred.
-    public func onFail(
+    public func didFailNavigation(
         _ block: @escaping @Sendable (_ navigation: WKNavigation, _ error: any Error) -> Void
     ) -> WebView {
-        registering(\.onFail, block)
+        registering(\.didFail, block)
     }
 
     /// Adds a modifier for this web view that fires an action when the web view needs to respond to an authentication
@@ -121,7 +121,7 @@ extension WebView {
     /// Adds a modifier for this web view that fires an action when the web view's web content process is terminated.
     /// - Parameters:
     ///   - block: A closure to run when a navigation is detected.
-    public func onTerminateWebContentProcess(
+    public func didTerminateWebContentProcess(
         _ block: @escaping @Sendable () -> Void
     ) -> WebView {
         registering(\.onTerminateWebContentProcess, block)
@@ -146,7 +146,7 @@ extension WebView {
     ///   - block: A closure to run when a navigation is detected.
     ///   - navigationAction: The action that is being turned into a download.
     ///   - download: The download.
-    public func onBecomeDownloadForNavigationAction(
+    public func didBecomeDownloadForNavigationAction(
         _ block: @escaping @Sendable (_ navigationAction: WKNavigationAction, _ download: WKDownload) -> Void
     ) -> WebView {
         registering(\.onBecomeDownloadForNavigationAction, block)
@@ -160,7 +160,7 @@ extension WebView {
     ///   - block: A closure to run when a navigation is detected.
     ///   - navigationResponse: The response that is being turned into a download.
     ///   - download: The download.
-    public func onBecomeDownloadForNavigationResponse(
+    public func didBecomeDownloadForNavigationResponse(
         _ block: @escaping @Sendable (_ navigationResponse: WKNavigationResponse, _ download: WKDownload) -> Void
     ) -> WebView {
         registering(\.onBecomeDownloadForNavigationResponse, block)
