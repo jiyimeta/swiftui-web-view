@@ -5,6 +5,7 @@ public struct WebView: UIViewRepresentable {
     private var proxy: WebViewProxy
 
     var navigationModifiers = WebViewNavigationModifiers()
+    var uiActionModifiers = WebViewUIActionModifiers()
 
     public init(_ proxy: WebViewProxy) {
         self.proxy = proxy
@@ -21,6 +22,7 @@ public struct WebView: UIViewRepresentable {
         Coordinator(parent: self)
     }
 
+    @MainActor
     public class Coordinator: NSObject {
         let parent: WebView
 

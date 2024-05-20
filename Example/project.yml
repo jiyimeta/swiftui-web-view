@@ -3,7 +3,7 @@ name: SwiftUIWebViewExample
 options:
   developmentLanguage: en
   deploymentTarget:
-    iOS: 15.0
+    iOS: 16.4
 
 packages:
   SwiftUIWebView:
@@ -23,4 +23,3 @@ targets:
       - SwiftUIWebViewExample
     dependencies:
       - package: SwiftUIWebView
-

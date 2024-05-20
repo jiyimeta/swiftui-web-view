@@ -49,6 +49,52 @@ struct ContentView: View {
                         .didBecomeDownloadForNavigationResponse { navigationResponse, download in
                             print("didBecomeDownloadForNavigationResponse", navigationResponse, download)
                         }
+                        .creatingWebView { configuration, navigationAction, windowFeatures in
+                            print("creatingWebView", configuration, navigationAction, windowFeatures)
+                            return nil
+                        }
+                        .didClose {
+                            print("didClose")
+                        }
+                        .runningJavaScriptAlertPanelWithMessage { message, frame in
+                            print("runningJavaScriptAlertPanelWithMessage", message, frame)
+                        }
+                        .runningJavaScriptConfirmPanelWithMessage { message, frame in
+                            print("runningJavaScriptConfirmPanelWithMessage", message, frame)
+                            return true
+                        }
+                        .runningJavaScriptTextInputPanelWithPrompt { prompt, defaultText, frame in
+                            print("runningJavaScriptTextInputPanelWithPrompt", prompt, defaultText ?? "nil", frame)
+                            return ""
+                        }
+                        .decidingMediaCapturePermissions { origin, frame, type in
+                            print("decidingMediaCapturePermissions", origin, frame, type)
+                            return .prompt
+                        }
+                        .decidingDeviceOrientationAndMotionPermission { origin, frame in
+                            print("decidingDeviceOrientationAndMotionPermission", origin, frame)
+                            return .prompt
+                        }
+                        .configuringContextMenu { elementInfo in
+                            print("configuringContextMenu", elementInfo)
+                            // return UIContextMenuConfiguration(actionProvider: { elements in UIMenu(title: "Foo")})
+                            return nil
+                        }
+                        .willPresentContextMenu { elementInfo in
+                            print("willPresentContextMenu", elementInfo)
+                        }
+                        .willCommitContextMenuWithAnimator { elementInfo, animator in
+                            print("willCommitContextMenuWithAnimator", elementInfo, animator)
+                        }
+                        .didEndContextMenu { elementInfo in
+                            print("didEndContextMenu", elementInfo)
+                        }
+                        .willPresentEditMenuWithAnimator { animator in
+                            print("willPresentEditMenuWithAnimator", animator)
+                        }
+                        .willDismissEditMenuWithAnimator { animator in
+                            print("willDismissEditMenuWithAnimator", animator)
+                        }
                         .ignoresSafeArea(.container, edges: .bottom)
                 }
 
