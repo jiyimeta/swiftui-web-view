@@ -42,6 +42,14 @@ extension WebViewProxy {
     public func reload() {
         wkWebView.reload()
     }
+
+    /// Navigates to a requested URL.
+    /// - Parameters:
+    ///   - request: The request specifying the URL to which to navigate.
+    /// - Returns: A new navigation for the given request.
+    public func load(_ request: URLRequest) -> WKNavigation? {
+        wkWebView.load(request)
+    }
 }
 
 // MARK: - Private methods

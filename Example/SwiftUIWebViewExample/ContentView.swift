@@ -10,6 +10,39 @@ struct ContentView: View {
             ZStack {
                 VStack(spacing: 0) {
                     WebView(proxy)
+                        .decidingPolicyForNavigationAction { navigationAction, preferences in
+                            print("decidingPolicyForNavigationAction", navigationAction, preferences)
+                            return .allow
+                        }
+                        .decidingPolicyForNavigationResponse { navigationResponse in
+                            print("decidingPolicyForNavigationResponse", navigationResponse)
+                            return .allow
+                        }
+                        .onStartProvisionalNavigation { navigation in
+                            print("onStartProvisionalNavigation", navigation)
+                        }
+                        .onReceiveServerRedirectForProvisionalNavigation { navigation in
+                            print("onReceiveServerRedirectForProvisionalNavigation", navigation)
+                        }
+                        .onFailProvisionalNavigation { navigation, error in
+                            print("onFailProvisionalNavigation", navigation, error)
+                        }
+                        .onFail { navigation, error in
+                            print("onFail", navigation, error)
+                        }
+                        .respondingToAuthenticationChallenge { challenge in
+                            print("respondingToAuthenticationChallenge", challenge)
+                            return .performDefaultHandling
+                        }
+                        .onTerminateWebContentProcess {
+                            print("onTerminateWebContentProcess")
+                        }
+                        .onBecomeDownloadForNavigationAction { navigationAction, download in
+                            print("onBecomeDownloadForNavigationAction", navigationAction, download)
+                        }
+                        .onBecomeDownloadForNavigationResponse { navigationResponse, download in
+                            print("onBecomeDownloadForNavigationResponse", navigationResponse, download)
+                        }
                         .ignoresSafeArea(.container, edges: .bottom)
                 }
 

@@ -194,7 +194,7 @@ type_name:
 
 identifier_name:
   min_length: 1
+  max_length: 50
 
 large_tuple:
   warning: 4
-

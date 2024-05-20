@@ -6,10 +6,7 @@ import PackageDescription
 let package = Package(
     name: "swiftui-web-view",
     platforms: [
-        .iOS(.v14),
-        .macOS(.v11),
-        .tvOS(.v13),
-        .watchOS(.v6),
+        .iOS(.v15),
     ],
     products: [
         .library(
