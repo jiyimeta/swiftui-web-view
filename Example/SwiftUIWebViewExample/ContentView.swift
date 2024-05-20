@@ -11,7 +11,6 @@ struct ContentView: View {
                 VStack(spacing: 0) {
                     WebView(proxy)
                         .ignoresSafeArea(.container, edges: .bottom)
-                    ScrollViewProxy
                 }
 
                 VStack {
