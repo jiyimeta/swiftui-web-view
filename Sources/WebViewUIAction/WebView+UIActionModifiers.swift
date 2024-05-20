@@ -207,7 +207,7 @@ extension WebView {
     // ///     It returns the result of the displayed dialog.
     // ///   - message: The message WebKit would display if this delegate were not invoked.
     // public func showingLockdownModeFirstUseMessage(
-    //     _ block: @escaping @@MainActor Sendable (
+    //     _ block: @escaping @MainActor Sendable (
     //         _ message: String
     //     ) async -> WKDialogResult
     // ) -> WebView {
