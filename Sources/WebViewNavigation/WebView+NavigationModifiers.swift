@@ -13,7 +13,7 @@ extension WebView {
     ///   - navigationAction: Descriptive information about the action triggering the navigation request.
     ///   - preferences: The default set of webpage preferences.
     public func decidingPolicyForNavigationAction(
-        _ block: @escaping @Sendable (
+        _ block: @escaping @MainActor @Sendable (
             _ navigationAction: WKNavigationAction,
             _ preferences: WKWebpagePreferences
         ) async -> WebViewNavigationActionPolicy
@@ -31,7 +31,9 @@ extension WebView {
     ///     It returns the policy to allow or cancel the navigation.
     ///   - navigationResponse: Descriptive information about the navigation response.
     public func decidingPolicyForNavigationResponse(
-        _ block: @escaping @Sendable (_ navigationResponse: WKNavigationResponse) async -> WKNavigationResponsePolicy
+        _ block: @escaping @MainActor @Sendable (
+            _ navigationResponse: WKNavigationResponse
+        ) async -> WKNavigationResponsePolicy
     ) -> WebView {
         registering(\.decidingPolicyForNavigationResponse, block)
     }
@@ -41,7 +43,7 @@ extension WebView {
     ///   - block: A closure to run when a navigation is detected.
     ///   - navigation: The navigation.
     public func didStartProvisionalNavigation(
-        _ block: @escaping @Sendable (_ navigation: WKNavigation) -> Void
+        _ block: @escaping @MainActor @Sendable (_ navigation: WKNavigation) -> Void
     ) -> WebView {
         registering(\.didStartProvisionalNavigation, block)
     }
@@ -51,7 +53,7 @@ extension WebView {
     ///   - webView: The web view invoking the delegate method.
     ///   - navigation: The navigation.
     public func didReceiveServerRedirectForProvisionalNavigation(
-        _ block: @escaping @Sendable (_ navigation: WKNavigation) -> Void
+        _ block: @escaping @MainActor @Sendable (_ navigation: WKNavigation) -> Void
     ) -> WebView {
         registering(\.didReceiveServerRedirectForProvisionalNavigation, block)
     }
@@ -63,7 +65,7 @@ extension WebView {
     ///   - navigation: The navigation.
     ///   - error: The error that occurred.
     public func didFailProvisionalNavigation(
-        _ block: @escaping @Sendable (_ navigation: WKNavigation, _ error: any Error) -> Void
+        _ block: @escaping @MainActor @Sendable (_ navigation: WKNavigation, _ error: any Error) -> Void
     ) -> WebView {
         registering(\.didFailProvisionalNavigation, block)
     }
@@ -73,7 +75,7 @@ extension WebView {
     ///   - block: A closure to run when a navigation is detected.
     ///   - navigation: The navigation.
     public func didCommitNavigation(
-        _ block: @escaping @Sendable (_ navigation: WKNavigation) -> Void
+        _ block: @escaping @MainActor @Sendable (_ navigation: WKNavigation) -> Void
     ) -> WebView {
         registering(\.didCommit, block)
     }
@@ -83,7 +85,7 @@ extension WebView {
     ///   - block: A closure to run when a navigation is detected.
     ///   - navigation: The navigation.
     public func didFinishNavigation(
-        _ block: @escaping @Sendable (_ navigation: WKNavigation) -> Void
+        _ block: @escaping @MainActor @Sendable (_ navigation: WKNavigation) -> Void
     ) -> WebView {
         registering(\.didFinish, block)
     }
@@ -95,7 +97,7 @@ extension WebView {
     ///   - navigation: The navigation.
     ///   - error: The error that occurred.
     public func didFailNavigation(
-        _ block: @escaping @Sendable (_ navigation: WKNavigation, _ error: any Error) -> Void
+        _ block: @escaping @MainActor @Sendable (_ navigation: WKNavigation, _ error: any Error) -> Void
     ) -> WebView {
         registering(\.didFail, block)
     }
@@ -111,7 +113,7 @@ extension WebView {
     ///     It returns the disposition with credentials if needed
     ///   - challenge: The authentication challenge.
     public func respondingToAuthenticationChallenge(
-        _ block: @escaping @Sendable (
+        _ block: @escaping @MainActor @Sendable (
             _ challenge: URLAuthenticationChallenge
         ) async -> URLAuthenticationChallengeDisposition
     ) -> WebView {
@@ -122,7 +124,7 @@ extension WebView {
     /// - Parameters:
     ///   - block: A closure to run when a navigation is detected.
     public func didTerminateWebContentProcess(
-        _ block: @escaping @Sendable () -> Void
+        _ block: @escaping @MainActor @Sendable () -> Void
     ) -> WebView {
         registering(\.onTerminateWebContentProcess, block)
     }
@@ -133,7 +135,7 @@ extension WebView {
     // ///     It returns whether or not to continue with the connection establishment.
     // ///   - challenge: The authentication challenge.
     // public func decidingPolicyForDeprecatedTLS(
-    //     _ block: @escaping @Sendable (_ challenge: URLAuthenticationChallenge) async -> Bool
+    //     _ block: @escaping @MainActor @Sendable (_ challenge: URLAuthenticationChallenge) async -> Bool
     // ) -> WebView {
     //     registering(\.decidingPolicyForDeprecatedTLS, block)
     // }
@@ -147,7 +149,10 @@ extension WebView {
     ///   - navigationAction: The action that is being turned into a download.
     ///   - download: The download.
     public func didBecomeDownloadForNavigationAction(
-        _ block: @escaping @Sendable (_ navigationAction: WKNavigationAction, _ download: WKDownload) -> Void
+        _ block: @escaping @MainActor @Sendable (
+            _ navigationAction: WKNavigationAction,
+            _ download: WKDownload
+        ) -> Void
     ) -> WebView {
         registering(\.onBecomeDownloadForNavigationAction, block)
     }
@@ -161,7 +166,10 @@ extension WebView {
     ///   - navigationResponse: The response that is being turned into a download.
     ///   - download: The download.
     public func didBecomeDownloadForNavigationResponse(
-        _ block: @escaping @Sendable (_ navigationResponse: WKNavigationResponse, _ download: WKDownload) -> Void
+        _ block: @escaping @MainActor @Sendable (
+            _ navigationResponse: WKNavigationResponse,
+            _ download: WKDownload
+        ) -> Void
     ) -> WebView {
         registering(\.onBecomeDownloadForNavigationResponse, block)
     }
